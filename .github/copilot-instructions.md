@@ -30,9 +30,16 @@ extending, and debugging the app.
 - Time handling: wedding date and countdown logic are implemented with `moment` in
   `src/App.js`. To update the wedding time, edit the `weddingDate` string near the top of
   `src/App.js`: `const weddingDate = moment('2026-01-03 10:30:00');`.
-- Music: background audio is a YouTube link passed to `ReactPlayer` in `src/App.js`.
-  Toggle behavior is controlled by local state `playing` with a button using `FaVolumeUp`/
-  `FaVolumeMute` icons. To change the song, update the `url` prop on `ReactPlayer`.
+- Reveal animations: `src/App.js` uses an IntersectionObserver to add `in-view` to elements
+  with `class="scroll-reveal"`. Animations and layout live in `src/App.css` (`.fly-in`,
+  `.fly-in-left`, `.fly-in-right`, `.scroll-reveal`, etc.).
+- Music: playback uses a native hidden `<audio>` element controlled via `audioRef` and a
+  user-gesture toggle button (this avoids browser autoplay blocking). The current app
+  references a local file `public/Dắt Anh Về Nhà.mp3` and builds `audioUrl` with
+  `encodeURIComponent(audioFile)` to handle spaces/diacritics. To change the song, replace
+  the file in `public/` and update the `audioFile` string in `src/App.js`, or switch to a
+  remote URL and update the `src` accordingly. Note: `react-player` is listed in
+  `package.json` but is not used by the current `App.js` implementation.
 - Images: inline remote images are used; when adding local images prefer `public/` or import
   them at top of `src/App.js` and keep `App.css` styles (e.g., `.hero-img`, `.gallery img`).
 
@@ -47,7 +54,7 @@ extending, and debugging the app.
 - To change the wedding date shown in the UI and countdown: edit the `weddingDate` value in
   `src/App.js` (see the top of the file). Also update visible date text in the `.hero` section
   (`03.01.2026`) so the UI and logic match.
-- To swap music: replace the `url` prop on the `ReactPlayer` instance in `src/App.js`.
+- To swap music: replace the local audio file `public/Dắt Anh Về Nhà.mp3` and/or update `const audioFile = 'Dắt Anh Về Nhà.mp3';` in `src/App.js` (the filename is URL-encoded with `encodeURIComponent`). Alternatively, set a remote `src` for the audio element.
 - To add a new gallery photo: insert an `<img src="..." />` in the `.gallery` div and reuse
   `.gallery img` styles from `src/App.css`.
 - To convert to a multi-component layout: create `src/components/` files and import them into

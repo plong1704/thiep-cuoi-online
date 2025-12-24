@@ -4,6 +4,7 @@ import moment from 'moment';
 import './App.css';
 
 function App() {
+  const [showQR, setShowQR] = useState(false);
   // Start muted/off to avoid browser autoplay blocking errors. User must click to play.
   const [playing, setPlaying] = useState(false);
 
@@ -44,6 +45,23 @@ function App() {
     return () => clearInterval(interval);
   }, [weddingDate]);
 
+  // on-scroll reveal (intersection observer)
+  useEffect(() => {
+    const els = document.querySelectorAll('.scroll-reveal');
+    if (!els || els.length === 0) return;
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    els.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="wedding-invite">
       {/* Nút bật/tắt nhạc */}
@@ -81,28 +99,21 @@ function App() {
         />
       </div>
 
-      {/* Phần 1: Mời cưới */}
-      <section className="section hero">
-        <div className="hero-top">
-          <h1>WEDDING INVITATION</h1>
+      {/* Phần 1: Landing / Save the Date */}
+      <section className="section landing">
+        <div className="landing-hero">
+          <img src={`${process.env.PUBLIC_URL}/image/SUKA3765.jpg`} alt="Couple" className="hero-photo" />
         </div>
 
-        <div className="hero-grid">
-          {/* 'I LOVE YOU' decorative curve removed per request */} 
-          <div className="hero-arch fly-in-left">
-            {/* Use local image from public/image and make it fit the arch */}
-            <img src={`${process.env.PUBLIC_URL}/image/SUKA3765.jpg`} alt="Cô dâu chú rể" />
-          </div>
+        <div className="landing-title">
+          <div className="save-date scroll-reveal">SAVE OUR DATE | 03.01.2026</div>
+          <h1 className="couple-names scroll-reveal">MAI PHƯƠNG &amp; TRUNG ĐỨC</h1>
+        </div>
 
-          <div className="hero-details fly-in-right">
-            <div className="details-block">
-              <h2>THƯ MỜI TIỆC CƯỚI</h2>
-              <div className="divider" />
-              <h3 className="main-title">LỄ THÀNH HÔN</h3>
-              <p className="time">THỨ BẢY - 10:30</p>
-              <p className="date">03 . 01 . 2026</p>
-            </div>
-          </div>
+        <div className="triptych">
+          <img src={`${process.env.PUBLIC_URL}/image/SUKA3765.jpg`} alt="Ảnh 1" className="triptych-img scroll-reveal left" />
+          <img src={`${process.env.PUBLIC_URL}/image/SUKA3676.jpg`} alt="Ảnh 2" className="triptych-img scroll-reveal mid" />
+          <img src={`${process.env.PUBLIC_URL}/image/SUKA3792.jpg`} alt="Ảnh 3" className="triptych-img scroll-reveal right" />
         </div>
       </section>
 
@@ -128,15 +139,15 @@ function App() {
         <h2 className="fly-in">Thư Mời</h2>
         <p className="fly-in">THAM DỰ LỄ THÀNH HÔN CỦA CHÚNG MÌNH</p>
         <div className="gallery fly-in">
-          <img src={`${process.env.PUBLIC_URL}/image/SUKA3676.jpg`} alt="Ảnh 1" />
-          <img src={`${process.env.PUBLIC_URL}/image/SUKA3765.jpg`} alt="Ảnh 2" />
-          <img src={`${process.env.PUBLIC_URL}/image/SUKA3792.jpg`} alt="Ảnh 3" />
+          <img className="left" src={`${process.env.PUBLIC_URL}/image/SUKA4711.jpg`} alt="Ảnh 1 - vườn hoa" />
+          <img className="mid" src={`${process.env.PUBLIC_URL}/image/SUKA4745.jpg`} alt="Ảnh 2 - phông nền trắng (lớn hơn)" />
+          <img className="right" src={`${process.env.PUBLIC_URL}/image/SUKA4704.jpg`} alt="Ảnh 3 - cô dâu chú rể" />
         </div>
         <p className="event-info fly-in">
-          08:00 | 03.01.2026 | Thứ bảy<br />
+          10:30 AM | 03.01.2026 | Thứ bảy<br />
           Tức ngày 15 tháng 11 năm Ất Tỵ
         </p>
-        <h3 className="fly-in">Tại Tư Gia Nhà Gái</h3>
+        <h3 className="fly-in">Tại Nhà Hàng Nông Huyền</h3>
         <p className="location fly-in">Thôn 2A - Eahleo - Đắk Lắk</p>
       </section>
 
@@ -155,14 +166,23 @@ function App() {
 
       {/* Phần 4: Trích dẫn tình yêu */}
       <section className="section quote">
-        <img src="https://images.unsplash.com/photo-1515934751635-c81c6ec7e10f?w=800" alt="Tình yêu" className="fly-in-left" />
-        <div className="quote-text fly-in-right">
-          <p>If I know what love is,<br />it is because of you.</p>
-          <p>Khoảnh khắc gặp được em,<br />anh đã quyết định sẽ cùng em đi hết cuộc đời.</p>
+        <div className="quote-grid">
+          <div className="quote-left scroll-reveal">
+            <img src={`${process.env.PUBLIC_URL}/image/SUKA4468.jpg`} alt="Cô dâu" />
+            <p className="quote-en">If I know what love is,<br />it is because of you.</p>
+          </div>
+
+          <div className="quote-right scroll-reveal">
+            <div className="stacked">
+              <img src={`${process.env.PUBLIC_URL}/image/SUKA4413.jpg`} alt="Cặp đôi 1" />
+              <img src={`${process.env.PUBLIC_URL}/image/SUKA4392.jpg`} alt="Cặp đôi 2" />
+            </div>
+            <p className="quote-vn">Khoảnh khắc gặp được em,<br />anh đã quyết định sẽ cùng em đi đến<br />hết cuộc đời.</p>
+          </div>
         </div>
       </section>
 
-      {/* Phần 5: With You */}
+     {/* Phần 5: With You
       <section className="section with-you">
         <h2 className="fly-in">WITH YOU</h2>
         <p className="fly-in">
@@ -173,39 +193,70 @@ function App() {
         <img src="https://images.unsplash.com/photo-1606800052052-a08af7148861?w=800" alt="With You" className="fly-in" />
       </section>
 
-      {/* Phần 6: Better man */}
+     {/* Phần 6: Better man 
       <section className="section better-man">
         <p className="quote-en fly-in">You make me want to be a better man.</p>
         <img src="https://images.unsplash.com/photo-1529634809774-8ab5f00c18c1?w=800" alt="Better man" className="fly-in" />
         <p className="quote-vn fly-in">Em khiến anh muốn trở thành phiên bản tốt nhất của chính mình.</p>
       </section>
-
-      {/* Phần 7: Countdown */}
-      <section className="section countdown">
-        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800" alt="Countdown" className="fly-in-left" />
-        <div className="timer fly-in-right">
-          <div><span>{countdown.days}</span> ngày</div>
-          <div><span>{countdown.hours}</span> giờ</div>
-          <div><span>{countdown.minutes}</span> phút</div>
-          <div><span>{countdown.seconds}</span> giây</div>
-        </div>
-      </section>
-
-      {/* Phần 8: LOVE */}
-      <section className="section love-frame">
-        <img src="https://images.unsplash.com/photo-1600054809646-9a1ff2a3f5f4?w=800" alt="Love" className="fly-in" />
-        <div className="love-text-overlay">LOVE</div>
-      </section>
-
+*/}
+ {/* Phần 7: Countdown */}
+<section className="section countdown" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/image/SUKA4609.jpg)` }}>
+  <div className="countdown-top-bar">
+    <div className="timer timer-horizontal">
+      <div><span>{countdown.days}</span> ngày</div>
+      <div><span>{countdown.hours}</span> giờ</div>
+      <div><span>{countdown.minutes}</span> phút</div>
+      <div><span>{countdown.seconds}</span> giây</div>
+    </div>
+  </div>
+</section>
+     {/* Phần 8: Love Frame */}
+<section className="section love-frame-section fly-in">
+  <div 
+    className="love-frame-background"
+    style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/image/SUKA3845.jpg)` }}
+  >
+    <div className="love-text-bottom">Love</div>
+  </div>
+</section>
       {/* Phần 9: Hộp quà cảm ơn */}
-      <section className="section gift">
-        <h2 className="fly-in">HỘP QUÀ YÊU THƯƠNG</h2>
-        <div className="gift-box fly-in">🎁</div>
-        <p className="fly-in">
-          Cảm ơn bạn đã đồng hành và chúc phúc cho hạnh trình yêu thương của chúng mình.<br />
-          Niềm vui hôm nay trọn vẹn hơn khi có bạn cùng chia sẻ!
-        </p>
-      </section>
+<section className="section gift">
+  <h2 className="fly-in">HỘP QUÀ YÊU THƯƠNG</h2>
+  
+  {/* Hộp quà click để mở QR */}
+  <div 
+    className="gift-box fly-in" 
+    onClick={() => setShowQR(true)}
+    style={{ cursor: 'pointer' }}
+  >
+    🎁
+  </div>
+  
+  <p className="fly-in">
+    Cảm ơn bạn đã đồng hành và chúc phúc cho hạnh trình yêu thương của chúng mình.<br />
+    Niềm vui hôm nay trọn vẹn hơn khi có bạn cùng chia sẻ!
+  </p>
+
+  {/* Modal QR - hiện khi click hộp quà */}
+  {showQR && (
+    <div className="qr-modal-overlay" onClick={() => setShowQR(false)}>
+      <div className="qr-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button className="qr-close-btn" onClick={() => setShowQR(false)}>
+          ×
+        </button>
+        
+        {/* Dùng hình QR local của bạn */}
+        <img 
+          src={`${process.env.PUBLIC_URL}/image/Hinh1.png`} 
+          alt="Mã QR chuyển khoản mừng cưới - PHẠM ĐẶNG MAI PHƯƠNG" 
+          className="qr-image" 
+        />
+
+      </div>
+    </div>
+  )}
+</section>
     </div>
   );
 }
