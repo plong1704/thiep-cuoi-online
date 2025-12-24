@@ -234,7 +234,7 @@ function App() {
   </div>
   
   <p className="fly-in">
-    Cảm ơn bạn đã đồng hành và chúc phúc cho hạnh trình yêu thương của chúng mình.<br />
+    Cảm ơn bạn đã đồng hành và chúc phúc cho hành trình yêu thương của chúng mình.<br />
     Niềm vui hôm nay trọn vẹn hơn khi có bạn cùng chia sẻ!
   </p>
 
