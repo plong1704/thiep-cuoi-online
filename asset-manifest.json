@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/thiep-cuoi-online/static/css/main.974b2385.css",
+    "main.js": "/thiep-cuoi-online/static/js/main.b3351213.js",
+    "static/js/453.ddd67ba2.chunk.js": "/thiep-cuoi-online/static/js/453.ddd67ba2.chunk.js",
+    "index.html": "/thiep-cuoi-online/index.html",
+    "main.974b2385.css.map": "/thiep-cuoi-online/static/css/main.974b2385.css.map",
+    "main.b3351213.js.map": "/thiep-cuoi-online/static/js/main.b3351213.js.map",
+    "453.ddd67ba2.chunk.js.map": "/thiep-cuoi-online/static/js/453.ddd67ba2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.974b2385.css",
+    "static/js/main.b3351213.js"
+  ]
+}
