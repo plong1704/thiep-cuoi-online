@@ -72,7 +72,7 @@ function App() {
             if (!audioRef.current) return;
             if (playing) {
               audioRef.current.pause();
-              setPlaying(true);
+              setPlaying(false);
             } else {
               try {
                 // set volume and attempt to play
