@@ -6,7 +6,7 @@ import './App.css';
 function App() {
   const [showQR, setShowQR] = useState(false);
   // Start muted/off to avoid browser autoplay blocking errors. User must click to play.
-  const [playing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState(true);
 
   // Ngày cưới: 03/01/2026 lúc 10:30 — keep a stable reference so effect doesn't re-run
   const weddingDate = React.useRef(moment('2026-01-03 10:30:00')).current;
