@@ -152,7 +152,7 @@ function App() {
         <div className="map-wrapper fly-in" style={{ marginTop: '16px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 5px 15px rgba(0,0,0,0.15)' }}>
           <iframe
             title="KALINA Wedding & Events location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.289905046197!2d106.60720951471954!3d10.78809599232447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529e97f2d0c33%3A0x0!2s107%20T%C3%A2n%20Th%E1%BA%AFng%2C%20S%C6%A1n%20K%E1%BB%B9%2C%20T%C3%A2n%20Ph%C3%BA%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh%2C%20Vietnam!5e0!3m2!1sen!2s!4v170--------"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.289905046197!2d106.60720951471954!3d10.78809599232447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529e97f2d0c33%3A0x0!2s107%20T%C3%A2n%20Th%E1%BA%AFng%2C%20S%C6%A1n%20K%E1%BB%B9%2C%20T%C3%A2n%20Ph%C3%BA%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh%2C%20Vietnam!5e0!3m2!1sen!2s!4v1700729572000"
             style={{ width: '100%', height: '320px', border: 0 }}
             allowFullScreen
             loading="lazy"
