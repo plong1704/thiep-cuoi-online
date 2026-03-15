@@ -8,8 +8,8 @@ function App() {
   // Start muted/of to avoid browser autoplay blocking errors. User must click to play.
   const [playing, setPlaying] = useState(false);
 
-  // Ngày cưới: 03/01/2026 lúc 10:30 — keep a stable reference so effect doesn't re-run
-  const weddingDate = React.useRef(moment('2026-01-03 10:30:00')).current;
+  // Ngày cưới: 04/04/2026 lúc 18:00 — keep a stable reference so effect doesn't re-run
+  const weddingDate = React.useRef(moment('2026-04-04 18:00:00')).current;
 
   // Local audio file placed in `public/` (filename contains spaces/diacritics)
   const audioFile = 'Dắt Anh Về Nhà.mp3';
@@ -106,8 +106,8 @@ function App() {
         </div>
 
         <div className="landing-title">
-          <div className="save-date scroll-reveal">SAVE OUR DATE | 03.01.2026</div>
-          <h1 className="couple-names scroll-reveal">MAI PHƯƠNG &amp; TRUNG ĐỨC</h1>
+          <div className="save-date scroll-reveal">SAVE OUR DATE | 04.04.2026</div>
+          <h1 className="couple-names scroll-reveal"> TRUNG ĐỨC &amp; MAI PHƯƠNG </h1>
         </div>
 
         <div className="triptych">
@@ -137,28 +137,38 @@ function App() {
           </div>
         </div>
         <h2 className="fly-in">Thư Mời</h2>
-        <p className="fly-in">THAM DỰ LỄ THÀNH HÔN CỦA CHÚNG MÌNH</p>
+        <p className="fly-in">THAM DỰ LỄ BÁO HỶ CỦA CHÚNG MÌNH</p>
         <div className="gallery fly-in">
           <img className="left" src={`${process.env.PUBLIC_URL}/image/SUKA4711.jpg`} alt="Ảnh 1 - vườn hoa" />
           <img className="mid" src={`${process.env.PUBLIC_URL}/image/SUKA4745.jpg`} alt="Ảnh 2 - phông nền trắng (lớn hơn)" />
           <img className="right" src={`${process.env.PUBLIC_URL}/image/SUKA4704.jpg`} alt="Ảnh 3 - cô dâu chú rể" />
         </div>
         <p className="event-info fly-in">
-          10:30 AM | 03.01.2026 | Thứ bảy<br />
-          Tức ngày 15 tháng 11 năm Ất Tỵ
+          18:00 | 04.04.2026 | Thứ Bảy<br />
+          Tức ngày 17 tháng 02 năm Bính Ngọ.
         </p>
-        <h3 className="fly-in">Tại Nhà Hàng Nông Huyền</h3>
-        <p className="location fly-in">Thôn 2A - Eahleo - Đắk Lắk</p>
+        <h3 className="fly-in">Tại KALINA Wedding & Events</h3>
+        <h3 className="location fly-in">107 Tân Thắng, Sơn Kỳ, Tân Phú, Thành phố Hồ Chí Minh</h3>
+        <div className="map-wrapper fly-in" style={{ marginTop: '16px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 5px 15px rgba(0,0,0,0.15)' }}>
+          <iframe
+            title="KALINA Wedding & Events location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.289905046197!2d106.60720951471954!3d10.78809599232447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529e97f2d0c33%3A0x0!2s107%20T%C3%A2n%20Th%E1%BA%AFng%2C%20S%C6%A1n%20K%E1%BB%B9%2C%20T%C3%A2n%20Ph%C3%BA%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh%2C%20Vietnam!5e0!3m2!1sen!2s!4v170--------"
+            style={{ width: '100%', height: '320px', border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
       </section>
 
       {/* Phần 3: Lịch ngày cưới */}
       <section className="section calendar">
-        <h2 className="fly-in">Tháng 01</h2>
+        <h2 className="fly-in">Tháng 04</h2>
         <div className="calendar-grid fly-in">
-          {Array.from({ length: 31 }).map((_, i) => {
+          {Array.from({ length: 30 }).map((_, i) => {
             const day = i + 1;
             return (
-              <span key={day} className={day === 3 ? 'highlight' : undefined}>{day}</span>
+              <span key={day} className={day === 4 ? 'highlight' : undefined}>{day}</span>
             );
           })}
         </div>
